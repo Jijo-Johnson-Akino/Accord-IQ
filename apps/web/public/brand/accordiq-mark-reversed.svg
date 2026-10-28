@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="256" height="256" fill="none" role="img" aria-label="AccordIQ">
+  <rect width="32" height="32" rx="8" fill="#FFFFFF"/>
+  <path d="M16 8L9 26M16 8L23 26" stroke="#142C4E" stroke-width="2.25" stroke-linecap="round"/>
+  <path d="M11.7 19H20.3" stroke="#4169E1" stroke-width="2.25" stroke-linecap="round"/>
+  <circle cx="16" cy="8" r="3" fill="#142C4E"/><circle cx="16" cy="8" r="1.35" fill="#4169E1"/>
+  <circle cx="9" cy="26" r="3" fill="#142C4E"/><circle cx="9" cy="26" r="1.35" fill="#4169E1"/>
+  <circle cx="23" cy="26" r="3" fill="#142C4E"/><circle cx="23" cy="26" r="1.35" fill="#4169E1"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 40" width="368" height="80" fill="none" role="img" aria-label="AccordIQ">
+  <!-- Wordmark is live text set in Inter (falls back to system sans). Convert to outlines before print use. -->
+  <g transform="translate(4 4)">
+    <rect width="32" height="32" rx="8" fill="#142C4E"/>
+    <path d="M16 8L9 26M16 8L23 26" stroke="#FFFFFF" stroke-width="2.25" stroke-linecap="round"/>
+    <path d="M11.7 19H20.3" stroke="#4169E1" stroke-width="2.25" stroke-linecap="round"/>
+    <circle cx="16" cy="8" r="3" fill="#FFFFFF"/><circle cx="16" cy="8" r="1.35" fill="#4169E1"/>
+    <circle cx="9" cy="26" r="3" fill="#FFFFFF"/><circle cx="9" cy="26" r="1.35" fill="#4169E1"/>
+    <circle cx="23" cy="26" r="3" fill="#FFFFFF"/><circle cx="23" cy="26" r="1.35" fill="#4169E1"/>
+  </g>
+  <text x="48" y="27.5" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="-0.4" fill="#142C4E">Accord<tspan fill="#4169E1">IQ</tspan></text>
+</svg>

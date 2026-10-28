@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+        env:
+          # Placeholders for `next build` (NODE_ENV=production). Not real credentials.
+          AUTH_SECRET: ci-build-placeholder-secret-not-for-production
+          EMAIL_DRIVER: resend
+          RESEND_API_KEY: ci-placeholder-not-a-real-key
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm db:setup
+        env:
+          DATABASE_URL: file:.data/ci.sqlite
+          AUTH_SEED_PASSWORD: Dev-only-passw0rd!
+      - run: pnpm --filter @accordiq/web exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+        env:
+          CI: true
+          DATABASE_URL: file:.data/ci.sqlite
+          AUTH_SEED_PASSWORD: Dev-only-passw0rd!
+          APP_URL: http://localhost:3000

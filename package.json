@@ -1,0 +1,41 @@
+{
+  "name": "accordiq",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AccordIQ — Every contract. Every commitment. Under control.",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @accordiq/web dev",
+    "build": "pnpm -r build",
+    "start": "pnpm --filter @accordiq/web start",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
+    "test:e2e": "pnpm --filter @accordiq/web test:e2e",
+    "db:migrate": "pnpm --filter @accordiq/db migrate",
+    "db:seed": "pnpm --filter @accordiq/auth seed && pnpm --filter @accordiq/clm seed",
+    "db:setup": "pnpm db:migrate && pnpm db:seed"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "eslint": "^9.39.0",
+    "prettier": "^3.9.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.72.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "unrs-resolver",
+      "esbuild",
+      "@libsql/client",
+      "libsql"
+    ]
+  }
+}

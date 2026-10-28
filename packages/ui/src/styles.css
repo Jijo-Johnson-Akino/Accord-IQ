@@ -1,0 +1,189 @@
+/*
+ * AccordIQ design tokens (Tailwind v4 @theme) and base styles.
+ *
+ * Principles: light mode by default, one restrained accent (blue) on a navy/neutral foundation,
+ * no gradients, status colors reserved for meaning. Color values are mirrored in tokens.ts.
+ */
+@theme {
+  /* ---------- Color: brand ---------- */
+  --color-navy: #142c4e;
+  --color-primary: #4169e1;
+  --color-primary-hover: #3558c8;
+  --color-primary-strong: #2a47a8; /* text/icons on primary-soft */
+  --color-primary-soft: #eaf1ff;
+
+  /* ---------- Color: neutrals ---------- */
+  --color-background: #f7f9fc;
+  --color-surface: #ffffff;
+  --color-ink: #172033; /* primary text */
+  --color-ink-muted: #687386; /* secondary text */
+  --color-line: #e3e8f0; /* decorative borders and dividers */
+  --color-line-strong: #8590a2; /* borders of interactive controls (3:1 on surface) */
+
+  /* ---------- Color: status (base = icons/accents; strong = text on soft) ---------- */
+  --color-success: #16845b;
+  --color-success-soft: #e7f5ef;
+  --color-success-strong: #0f6445;
+  --color-warning: #b7791f;
+  --color-warning-soft: #fbf3e4;
+  --color-warning-strong: #7a4f0c;
+  --color-error: #c43d4b;
+  --color-error-soft: #fbecee;
+  --color-error-strong: #9b2b38;
+
+  /* ---------- Typography ---------- */
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --text-display: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 700;
+
+  --text-h1: clamp(1.75rem, 1.4rem + 1.4vw, 2.25rem);
+  --text-h1--line-height: 1.15;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 700;
+
+  --text-h2: 1.5rem;
+  --text-h2--line-height: 1.25;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h2--font-weight: 650;
+
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.35;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 600;
+
+  --text-h4: 1.0625rem;
+  --text-h4--line-height: 1.4;
+  --text-h4--font-weight: 600;
+
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.65;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.01em;
+
+  /* ---------- Spacing (4px grid; Tailwind's default scale still applies) ---------- */
+  --spacing-gutter: 1.5rem; /* page side padding on mobile */
+  --spacing-card: 1.5rem; /* default card padding */
+  --spacing-section: 5rem; /* vertical rhythm between page sections */
+
+  /* ---------- Radii ---------- */
+  --radius-sm: 0.375rem; /* badges, small controls */
+  --radius-md: 0.5rem; /* buttons, inputs */
+  --radius-lg: 0.75rem; /* cards, tables */
+  --radius-xl: 1rem; /* modals */
+
+  /* ---------- Shadows (navy-tinted, subtle) ---------- */
+  --shadow-xs: 0 1px 2px rgb(20 44 78 / 0.06);
+  --shadow-sm: 0 1px 3px rgb(20 44 78 / 0.08), 0 1px 2px rgb(20 44 78 / 0.04);
+  --shadow-md: 0 4px 12px -2px rgb(20 44 78 / 0.1), 0 2px 4px -2px rgb(20 44 78 / 0.06);
+  --shadow-lg: 0 12px 28px -6px rgb(20 44 78 / 0.16), 0 4px 8px -4px rgb(20 44 78 / 0.08);
+  --shadow-focus: 0 0 0 4px rgb(65 105 225 / 0.2);
+
+  /* ---------- Focus ---------- */
+  --focus-ring-color: var(--color-primary);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* ---------- Motion ---------- */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    background: var(--color-background);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+
+  /* Prevent background scroll while a native modal <dialog> is open. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-line);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+  h1 {
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+    letter-spacing: var(--text-h1--letter-spacing);
+    font-weight: var(--text-h1--font-weight);
+  }
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    letter-spacing: var(--text-h2--letter-spacing);
+    font-weight: var(--text-h2--font-weight);
+  }
+  h3 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    letter-spacing: var(--text-h3--letter-spacing);
+    font-weight: var(--text-h3--font-weight);
+  }
+  h4 {
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
+    font-weight: var(--text-h4--font-weight);
+  }
+
+  /* One consistent, always-visible keyboard focus indicator. */
+  :focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  ::selection {
+    background: var(--color-primary-soft);
+    color: var(--color-navy);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

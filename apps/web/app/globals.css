@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "@accordiq/ui/styles.css";
+
+/* Tell Tailwind to scan the shared UI package for class names. */
+@source "../../../packages/ui/src";
+
+/*
+ * All design tokens and base element styles live in packages/ui/src/styles.css.
+ * Keep app-specific overrides out of here unless they are truly app-only.
+ */
